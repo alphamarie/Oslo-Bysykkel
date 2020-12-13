@@ -22,7 +22,7 @@ class Hovedprogram:
             return obj
         except:
             funnet_feil()
-            print("Kunne ikke hente data fra " + url + ". Feilkode: " + status_kode)
+            print("Kunne ikke hente data fra " + url + ". Statuskode: " + status_kode)
 
     def opprett_statuser(self):     #Oppretter status-objekter
         status_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json")
