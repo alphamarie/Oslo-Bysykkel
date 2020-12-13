@@ -3,7 +3,7 @@
 
 ## Kjøring ##
 Programmet er skrevet i Python versjon 3.7.4.
-Kjør programmet med ved å kjøre Hovedprogram.py. 
+Kjør programmet med ved å kjøre **Hovedprogram.py**. 
 I windows terminal:
 ```bash
 py Hovedprogram.py
