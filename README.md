@@ -1,5 +1,5 @@
 
-# Bysykkel informasjon #
+# Oslo Bysykkel Sanntidsdata #
 
 ## Kjøring ##
 Programmet er skrevet i Python versjon 3.7.4.
