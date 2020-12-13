@@ -31,12 +31,12 @@ class Hovedprogram:
     def opprett_statuser(self):     #Oppretter status-objekter
         status_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json")
         updated_at = status_info_string['last_updated']
-        stasjoner = status_info_string['data']['stations']
-        if not stasjoner:
+        statuser = status_info_string['data']['stations']
+        if not statuser:
             funnet_feil("Ingen stasjoner funnet. ")
             return
         alle_statuser = []
-        for status in stasjoner:
+        for status in statuser:
             try:
                 ny_status = Status(updated_at, status['station_id'], status['is_installed'],
                                     + status['is_renting'], status['num_bikes_available'],
