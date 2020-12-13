@@ -1,13 +1,13 @@
 
-#Bysykkel informasjon
+#Bysykkel informasjon #
 
-##Kjøring
+##Kjøring##
 Kjør programmet med ved å kjøre Hovedprogram.py
 ```bash
 py Hovedprogram.py
 ```
 
-##Feilmeldinger
+##Feilmeldinger##
 Hovedprogrammet teller antall feil under kjøring i *antall_feilmeldinger*.
 Kjør programmet uten å printe stasjonsinfo for å kun få feilmeldinger:
 
@@ -19,7 +19,7 @@ def __init__(self):
 
 ```
 
-##API
+##API##
 Sanntidsdataen er hentet fra [oslobysykkel.no](https://oslobysykkel.no/apne-data/sanntid).
 
 
