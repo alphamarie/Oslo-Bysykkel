@@ -2,7 +2,9 @@
 # Bysykkel informasjon #
 
 ## Kjøring ##
-Kjør programmet med ved å kjøre Hovedprogram.py
+Programmet er skrevet i Python versjon 3.7.4.
+Kjør programmet med ved å kjøre Hovedprogram.py. 
+I windows terminal:
 ```bash
 py Hovedprogram.py
 ```
@@ -19,7 +21,7 @@ def __init__(self):
 
 ```
 
-## AP I##
+## API ##
 Sanntidsdataen er hentet fra [oslobysykkel.no](https://oslobysykkel.no/apne-data/sanntid).
 
 
