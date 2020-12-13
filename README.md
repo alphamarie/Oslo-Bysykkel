@@ -14,7 +14,7 @@ py Hovedprogram.py
 
 ## Feilmeldinger ##
 Hovedprogrammet teller antall feil under kjøring i *antall_feilmeldinger*.
-Kjør programmet uten å printe stasjonsinfo for å kun få feilmeldinger:
+Kjør programmet uten å printe stasjonsinfo for å kun få feilmeldinger som vist under:
 
 ``` bash
 def __init__(self):
