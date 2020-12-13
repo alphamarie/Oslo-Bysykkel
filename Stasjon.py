@@ -11,7 +11,7 @@ class Stasjon:
         self._status = status
 
     def get_stasjons_info(self):
-        tekst = "\n Stasjon: " + self._name + self._status.get_stasjon_info() +"\n"
+        tekst = "\n Stativ: " + self._name + self._status.get_stasjon_info() +"\n"
         return tekst
 
     def get_last_updated(self):
