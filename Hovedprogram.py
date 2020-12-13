@@ -26,7 +26,7 @@ class Hovedprogram:
             data = respons.json()
             return data
         except:
-            funnet_feil("Kunne ikke hente data fra " + url + ". Statuskode: " + status_kode)
+            funnet_feil("Kunne ikke hente data fra " + url + ". Statuskode: " + str(status_kode))
 
     def opprett_statuser(self):     #Oppretter status-objekter
         status_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json")
