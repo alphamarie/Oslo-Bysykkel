@@ -6,20 +6,24 @@ from Status import Status
 class Hovedprogram:
     def __init__(self):
         self.antall_feilmeldinger = 0;
-        alle_stasjonene = self.opprett_stasjoner()
-        for s in alle_stasjonene:
-            print(s.get_stasjons_info())
+        alle_stasjoner = self.opprett_stasjoner()
+        self.print_alle_stativer(alle_stasjoner)
+        #self.sok_paa_stativer(alle_stasjoner)
         #print("Antall feil: " + str(self.antall_feilmeldinger))
+
+    def print_alle_stativer(self, alle_stasjoner):
+        for s in alle_stasjoner:
+            print(s.get_stasjons_info())
 
     def funnet_feil(self):          #Legger til 1 i telleren for feilmeldinger
         self.antall_feilmeldinger +=  1
 
     def hent_JSON(self, url):       #returnerer JSON-data fra input URL
         try:
-            response = requests.get(url)
-            status_kode = (response.status_code) #200 = alt bra med get(url)
-            obj = response.json()
-            return obj
+            respons = requests.get(url)
+            status_kode = (respons.status_code) #skal være 200 hvis alt bra med get(url)
+            data = respons.json()
+            return data
         except:
             funnet_feil()
             print("Kunne ikke hente data fra " + url + ". Statuskode: " + status_kode)
@@ -27,18 +31,18 @@ class Hovedprogram:
     def opprett_statuser(self):     #Oppretter status-objekter
         status_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json")
         updated_at = status_info_string['last_updated']
-        stations = status_info_string['data']['stations']
-        if not stations:
+        stasjoner = status_info_string['data']['stations']
+        if not stasjoner:
             funnet_feil()
             print("Ingen stasjoner funnet. ")
             return
         alle_statuser = []
-        for status in stations:
+        for status in stasjoner:
             try:
-                Ny_status = Status(updated_at, status['station_id'], status['is_installed'],
+                ny_status = Status(updated_at, status['station_id'], status['is_installed'],
                                     + status['is_renting'], status['num_bikes_available'],
                                     + status['num_docks_available'], status['last_reported'], status['is_returning'])
-                alle_statuser.append(Ny_status)
+                alle_statuser.append(ny_status)
             except:
                 funnet_feil()
                 print("Feil ved opprettelse av status. ")
@@ -48,11 +52,11 @@ class Hovedprogram:
         alle_statuser = self.opprett_statuser()
         station_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json")
         updated_at = station_info_string['last_updated']
-        stations = station_info_string['data']['stations']
-        if not stations:
+        stasjoner = station_info_string['data']['stations']
+        if not stasjoner:
             return
         alle_stasjoner = []
-        for station in stations:
+        for station in stasjoner:
             for status in alle_statuser:
                 if (status.get_status_id() == station['station_id']):
                     stasjons_status = status
@@ -64,5 +68,16 @@ class Hovedprogram:
                 funnet_feil()
                 "Feil ved opprettelse av stasjon. "
         return alle_stasjoner
+
+
+    def sok_paa_stativer(self, alle_stasjoner):   #Oppgir informasjon om alle stativer der stativ-navnet
+        soke_ord = input("\n Søk på stativ: ")  #inneholder søkeord oppgit av bruker
+        stativer_med_treff_paa_soke_ord = []
+        for s in alle_stasjoner:
+            if soke_ord in s.get_name():
+                stativer_med_treff_paa_soke_ord.append(s)
+        for t in stativer_med_treff_paa_soke_ord:
+            print(t.get_stasjons_info())
+
 
 Hovedprogram()

@@ -1,24 +1,24 @@
 
 class Stasjon:
-    def __init__(self, oppdatert, stasjonsID, navn, adresse, lati, long, cap, stat):
-        self._sist_oppdatert = oppdatert #i integer POSIX timestamp format
-        self._station_id = stasjonsID
-        self._name = navn
-        self._adress = adresse
-        self._lat = lati
-        self._lon = long
-        self._capactiy = cap
-        self._status = stat
+    def __init__(self, last_updated, tation_id, name, adress, lat, lon, capactiy, status):
+        self._last_updated = last_updated  #format:integer POSIX timestamp
+        self._station_id = tation_id
+        self._name = name
+        self._adress = adress
+        self._lat = lat
+        self._lon = lon
+        self._capactiy = capactiy
+        self._status = status
 
     def get_stasjons_info(self):
-        text = "Stasjon: " + self._name + self._status.get_stasjons_info() +"\n"
-        return text
+        tekst = "\n Stasjon: " + self._name + self._status.get_stasjon_info() +"\n"
+        return tekst
 
-    def get_sist_oppdatert(self):
-        return self._sist_oppdatert
+    def get_last_updated(self):
+        return self._last_updated
 
-    def set_sist_oppdatert(self, x):
-        self._sist_oppdatert = x
+    def set_last_updated(self, x):
+        self._last_updated = x
 
     def get_station_id(self):
         return self._station_id

@@ -1,7 +1,7 @@
 
 class Status:
-    def __init__(self, sist_oppdatert, status_id, is_installed, is_renting, num_bikes_available, num_docks_available, last_reported, is_returning):
-        self._sist_oppdatert = sist_oppdatert #i integer POSIX timestamp format
+    def __init__(self, last_updated, status_id, is_installed, is_renting, num_bikes_available, num_docks_available, last_reported, is_returning):
+        self._last_updated = last_updated #format:integer POSIX timestamp
         self._status_id = status_id
         self._is_installed = is_installed
         self._is_renting = is_renting
@@ -10,15 +10,15 @@ class Status:
         self._last_reported = last_reported
         self._is_returning = is_returning
 
-    def get_stasjons_info(self):
+    def get_stasjon_info(self):
         text = ("\n Ledige sykler: " + str(self._num_bikes_available) + "\n Ledige låser: " + str(self._num_docks_available))
         return text
 
-    def get_sist_oppdatert(self):
-        return self._sist_oppdatert
+    def get_last_updated(self):
+        return self._last_updated
 
-    def set_sist_oppdatert(self, x):
-        self._sist_oppdatert = x
+    def set_last_updated(self, x):
+        self._last_updated = x
 
     def get_status_id(self):
         return self._status_id
