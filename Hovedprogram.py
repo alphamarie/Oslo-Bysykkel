@@ -8,7 +8,7 @@ class Hovedprogram:
         self.antall_feilmeldinger = 0;
         alle_stasjonene = self.opprett_stasjoner()
         for s in alle_stasjonene:
-            s.print_stasjons_info()
+            print(s.get_stasjons_info())
         #print("Antall feil: " + str(self.antall_feilmeldinger))
 
     def funnet_feil(self):          #Legger til 1 i telleren for feilmeldinger

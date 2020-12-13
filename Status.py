@@ -10,9 +10,9 @@ class Status:
         self._last_reported = last_reported
         self._is_returning = is_returning
 
-    def print_status_info(self):
-        print("Ledige sykler: " + str(self._num_bikes_available))
-        print("Ledige låser: " + str(self._num_docks_available))
+    def get_stasjons_info(self):
+        text = ("\n Ledige sykler: " + str(self._num_bikes_available) + "\n Ledige låser: " + str(self._num_docks_available))
+        return text
 
     def get_sist_oppdatert(self):
         return self._sist_oppdatert

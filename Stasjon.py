@@ -10,10 +10,9 @@ class Stasjon:
         self._capactiy = cap
         self._status = stat
 
-    def print_stasjons_info(self):
-        print("Sykkel-stasjon: " + self._name)
-        self._status.print_status_info()
-        print(" ")
+    def get_stasjons_info(self):
+        text = "Stasjon: " + self._name + self._status.get_stasjons_info() +"\n"
+        return text
 
     def get_sist_oppdatert(self):
         return self._sist_oppdatert
