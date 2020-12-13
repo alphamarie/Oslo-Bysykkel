@@ -15,7 +15,8 @@ class Hovedprogram:
         for s in alle_stasjoner:
             print(s.get_stasjons_info())
 
-    def funnet_feil(self):          #Legger til 1 i telleren for feilmeldinger
+    def funnet_feil(self, feilmelding):          #Legger til 1 i telleren for feilmeldinger
+        print(feilmelding)
         self.antall_feilmeldinger +=  1
 
     def hent_JSON(self, url):       #returnerer JSON-data fra input URL
@@ -25,16 +26,14 @@ class Hovedprogram:
             data = respons.json()
             return data
         except:
-            funnet_feil()
-            print("Kunne ikke hente data fra " + url + ". Statuskode: " + status_kode)
+            funnet_feil("Kunne ikke hente data fra " + url + ". Statuskode: " + status_kode)
 
     def opprett_statuser(self):     #Oppretter status-objekter
         status_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json")
         updated_at = status_info_string['last_updated']
         stasjoner = status_info_string['data']['stations']
         if not stasjoner:
-            funnet_feil()
-            print("Ingen stasjoner funnet. ")
+            funnet_feil("Ingen stasjoner funnet. ")
             return
         alle_statuser = []
         for status in stasjoner:
@@ -44,8 +43,7 @@ class Hovedprogram:
                                     + status['num_docks_available'], status['last_reported'], status['is_returning'])
                 alle_statuser.append(ny_status)
             except:
-                funnet_feil()
-                print("Feil ved opprettelse av status. ")
+                funnet_feil("Feil ved opprettelse av status. ")
         return alle_statuser
 
     def opprett_stasjoner(self):    #Oppretter stasjon-objekter
@@ -65,8 +63,7 @@ class Hovedprogram:
                                     station['lat'], station['lon'], station['capacity'], stasjons_status)
                 alle_stasjoner.append(ny_stasjon)
             except:
-                funnet_feil()
-                "Feil ved opprettelse av stasjon. "
+                funnet_feil("Feil ved opprettelse av stasjon. ")
         return alle_stasjoner
 
 
