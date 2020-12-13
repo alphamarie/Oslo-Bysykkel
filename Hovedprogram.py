@@ -71,7 +71,7 @@ class Hovedprogram:
 
 
     def sok_paa_stativer(self, alle_stasjoner):   #Oppgir informasjon om alle stativer der stativ-navnet
-        soke_ord = input("\n Søk på stativ: ")  #inneholder søkeord oppgit av bruker
+        soke_ord = input("\n Søk på stativ: ")  #inneholder søkeord oppgitt av bruker
         stativer_med_treff_paa_soke_ord = []
         for s in alle_stasjoner:
             if soke_ord in s.get_name():
