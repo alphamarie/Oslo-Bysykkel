@@ -18,7 +18,7 @@ class Hovedprogram:
             print(s.get_stasjons_info())
 
     def funnet_feil(self, feilmelding):          #Legger til 1 i telleren for feilmeldinger
-        print(feilmelding)
+        print("Feilmelding: " + feilmelding + "\n")
         self.antall_feilmeldinger +=  1
 
     def hent_JSON(self, url):       #returnerer JSON-data fra input URL
