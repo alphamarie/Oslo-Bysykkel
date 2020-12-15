@@ -23,10 +23,10 @@ class Hovedprogram:
         respons = requests.get(url)
         status_kode = (respons.status_code) #skal være 200 hvis alt bra med get(url)
         try:
-             data = respons.json()
+            data = respons.json()
             return data
         except:
-            funnet_feil("Kunne ikke hente data fra " + url + ". Statuskode: " + str(status_kode))
+            this.funnet_feil("Kunne ikke hente data fra " + url + ". Statuskode: " + str(status_kode))
 
     def opprett_statuser(self):     #Oppretter status-objekter
         status_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json")
@@ -43,7 +43,7 @@ class Hovedprogram:
                                     + status['num_docks_available'], status['last_reported'], status['is_returning'])
                 alle_statuser.append(ny_status)
             except:
-                funnet_feil("Feil ved opprettelse av status. ")
+                this.funnet_feil("Feil ved opprettelse av status. ")
         return alle_statuser
 
     def opprett_stasjoner(self):    #Oppretter stasjon-objekter
@@ -63,7 +63,7 @@ class Hovedprogram:
                                     station['lat'], station['lon'], station['capacity'], stasjons_status)
                 alle_stasjoner.append(ny_stasjon)
             except:
-                funnet_feil("Feil ved opprettelse av stasjon. ")
+                this.funnet_feil("Feil ved opprettelse av stasjon. ")
         return alle_stasjoner
 
 
