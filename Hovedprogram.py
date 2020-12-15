@@ -20,10 +20,10 @@ class Hovedprogram:
         self.antall_feilmeldinger +=  1
 
     def hent_JSON(self, url):       #returnerer JSON-data fra input URL
+        respons = requests.get(url)
+        status_kode = (respons.status_code) #skal være 200 hvis alt bra med get(url)
         try:
-            respons = requests.get(url)
-            status_kode = (respons.status_code) #skal være 200 hvis alt bra med get(url)
-            data = respons.json()
+             data = respons.json()
             return data
         except:
             funnet_feil("Kunne ikke hente data fra " + url + ". Statuskode: " + str(status_kode))
