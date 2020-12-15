@@ -4,6 +4,9 @@
 ## Om programmet ##
 Programmet henter sanntidsdata om Oslo Bysykkels sykkelstativer og viser ledige sykler og låser på alle Bysykkel-stasjoner. Det er også mulig å modere for å søke etter stativ-navn og kun få opp relevante stativer.
 
+## Biblioteker ##
+Programmet bruker bibliotekene *json* og *request*.
+
 ## Kjøring ##
 Programmet er skrevet i Python versjon 3.7.4.
 Start programmet ved å kjøre **Hovedprogram.py**.
