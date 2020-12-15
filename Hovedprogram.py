@@ -9,9 +9,11 @@ class Hovedprogram:
         alle_stasjoner = self.opprett_stasjoner()
         self.print_alle_stativer(alle_stasjoner)
         #self.sok_paa_stativer(alle_stasjoner)
-        #print("Antall feil: " + str(self.antall_feilmeldinger))
+        print("Antall feil: " + str(self.antall_feilmeldinger))
 
     def print_alle_stativer(self, alle_stasjoner):
+        if not alle_stasjoner:
+            return
         for s in alle_stasjoner:
             print(s.get_stasjons_info())
 
@@ -20,18 +22,22 @@ class Hovedprogram:
         self.antall_feilmeldinger +=  1
 
     def hent_JSON(self, url):       #returnerer JSON-data fra input URL
-        respons = requests.get(url)
-        status_kode = (respons.status_code) #skal være 200 hvis alt bra med get(url)
         try:
+            respons = requests.get(url)
+            status_kode = (respons.status_code) #skal være 200 hvis alt bra med get(url)
             data = respons.json()
             return data
         except:
-            this.funnet_feil("Kunne ikke hente data fra " + url + ". Statuskode: " + str(status_kode))
+            self.funnet_feil("Kunne ikke hente data fra " + url + ". ")
 
     def opprett_statuser(self):     #Oppretter status-objekter
-        status_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json")
-        updated_at = status_info_string['last_updated']
-        statuser = status_info_string['data']['stations']
+        try:
+            status_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json")
+            updated_at = status_info_string['last_updated']
+            statuser = status_info_string['data']['stations']
+        except:
+            self.funnet_feil("Kunne ikke opprette statuser. ")
+            return
         if not statuser:
             funnet_feil("Ingen stasjoner funnet. ")
             return
@@ -43,14 +49,18 @@ class Hovedprogram:
                                     + status['num_docks_available'], status['last_reported'], status['is_returning'])
                 alle_statuser.append(ny_status)
             except:
-                this.funnet_feil("Feil ved opprettelse av status. ")
+                self.funnet_feil("Feil ved opprettelse av status. ")
         return alle_statuser
 
     def opprett_stasjoner(self):    #Oppretter stasjon-objekter
-        alle_statuser = self.opprett_statuser()
-        station_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json")
-        updated_at = station_info_string['last_updated']
-        stasjoner = station_info_string['data']['stations']
+        try:
+            alle_statuser = self.opprett_statuser()
+            station_info_string = self.hent_JSON("https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json")
+            updated_at = station_info_string['last_updated']
+            stasjoner = station_info_string['data']['stations']
+        except:
+            self.funnet_feil("Kunne ikke opprette stasjoner. ")
+            return
         if not stasjoner:
             return
         alle_stasjoner = []
@@ -63,7 +73,7 @@ class Hovedprogram:
                                     station['lat'], station['lon'], station['capacity'], stasjons_status)
                 alle_stasjoner.append(ny_stasjon)
             except:
-                this.funnet_feil("Feil ved opprettelse av stasjon. ")
+                self.funnet_feil("Feil ved opprettelse av stasjon. ")
         return alle_stasjoner
 
 
